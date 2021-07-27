@@ -15,6 +15,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import static com.spring.Controller.ApplicationUser.ADMIN;
+import static com.spring.Controller.ApplicationUser.STUDENT;
+
 @Configuration
 @EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -45,8 +48,16 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         UserDetails user1 = User.builder()
                             .username("suvardhan")
                             .password(passwordEncoder.encode("password"))
-                            .roles("VOTER")
+                            .roles(STUDENT.name())
                             .build();
-        return new InMemoryUserDetailsManager(user1);
+
+        UserDetails admin = User.builder()
+                .username("adminuser")
+                .password(passwordEncoder.encode("123456"))
+                .roles(ADMIN.name())
+                .build();
+        return new InMemoryUserDetailsManager(user1,
+                admin
+        );
     }
 }
