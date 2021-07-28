@@ -19,7 +19,6 @@ public class StudentController {
                                                 new Student(2,"Sravanthi"));
 
 
-    @Cacheable(value = "student", key = "Student")
     @GetMapping("{studentId}")
     public Student findList(@PathVariable Integer studentId){
         System.out.println("method is called");

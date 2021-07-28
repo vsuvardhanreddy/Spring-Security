@@ -1,5 +1,9 @@
 package com.spring.Controller;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.Set;
+
 public enum ApplicationUserPermission {
 
     STUDENT_READ("student:read"),
@@ -16,4 +20,6 @@ public enum ApplicationUserPermission {
     public String getPermission(){
         return permission;
     }
+
+
 }
